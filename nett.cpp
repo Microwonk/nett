@@ -1,12 +1,14 @@
 #include <iostream>
 
+#include <fmt/core.h>
+
 #define PROJECT_NAME "nett"
 
 int main(int argc, char **argv) {
     if(argc != 1) {
-        std::cout << argv[0] <<  "takes no arguments.\n";
+        fmt::println("{} take no argument", argv[0]);
         return 1;
     }
-    std::cout << "This is project " << PROJECT_NAME << ".\n";
+    fmt::println("This is project {}", PROJECT_NAME);
     return 0;
 }
