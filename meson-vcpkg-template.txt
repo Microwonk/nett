@@ -1,6 +1,6 @@
 [constants]
-vcpkg_base_path = 'REPLACE PATH'
-vcpkg_base_install_dir = 'REPLACE PATH'
+vcpkg_base_path = 'BASE_PATH'
+vcpkg_base_install_dir = 'BASE_INSTALL_DIR'
 vcpkg_target_triplet = 'x64-PLATFORM/'
 vcpkg_host_triplet = 'x64-PLATFORM/'
 vcpkg_installed_dir = vcpkg_base_install_dir + vcpkg_target_triplet
@@ -13,8 +13,6 @@ cmake_toolchain_file = vcpkg_base_path + 'scripts/buildsystems/vcpkg.cmake'
 [binaries]
 vcpkg = [ vcpkg_base_path + 'vcpkg']
 pkgconfig = [ vcpkg_installed_dir + 'tools/pkgconf/pkgconf']
-c = '/path/to/gcc'               # Path to the C compiler
-cpp = '/path/to/g++'             # Path to the C++ compiler
 
 [cmake]
 VCPKG_TARGET_TRIPLET = vcpkg_target_triplet

@@ -5,11 +5,15 @@ project('nett', 'cpp',
                       'cpp_args=-Wall -Wextra -Wpedantic -Wshadow'],
     meson_version: '>=1.0.0')
 
+glob = import('glob')
+
 vcpkg = find_program('vcpkg', required : true)
 run_command(vcpkg, 'install', '--x-wait-for-lock',
                               '--x-manifest-root=' + meson.current_source_dir())
 
 fmt_dep = dependency('fmt')
 
-exe = executable('nett', 'nett.cpp',
+subdir('src')
+
+exe = executable('nett', sources,
   dependencies: [fmt_dep])
