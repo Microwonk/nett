@@ -1,1 +1,1 @@
-sources = files('mett.cpp')
+sources = files('nett.cpp')
