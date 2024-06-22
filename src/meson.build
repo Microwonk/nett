@@ -1,1 +1,1 @@
-sources = files(glob('*.cpp'))
+sources = files('mett.cpp')
