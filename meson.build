@@ -10,8 +10,9 @@ run_command(vcpkg, 'install', '--x-wait-for-lock',
                               '--x-manifest-root=' + meson.current_source_dir())
 
 fmt_dep = dependency('fmt')
+boost_dep = dependency('boost')
 
 subdir('src')
 
 executable('nett', sources,
-  dependencies: [fmt_dep])
+  dependencies: [fmt_dep, boost_dep])

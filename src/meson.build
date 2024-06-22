@@ -1,1 +1,1 @@
-sources = files('nett.cpp')
+sources = files('nett.cpp', 'TcpServer.cpp')

@@ -33,10 +33,10 @@ with open(template_file, 'r') as f:
 
 # Perform replacements using regular expressions
 replacements = {
-    r'BASE_PATH': f"{vcpkg_root}",
+    r'BASE_PATH': f"{vcpkg_root}/",
     r'x64-PLATFORM/': f'x64-{platform}/',
     r'PLATFORM': platform,
-    r'BASE_INSTALL_DIR': vcpkg_base_install_dir,
+    r'BASE_INSTALL_DIR': f'{vcpkg_base_install_dir}/',
 }
 
 for pattern, replacement in replacements.items():

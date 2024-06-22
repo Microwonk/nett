@@ -1,3 +1,7 @@
 {
-  "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
+  "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+  "C_Cpp.default.compileCommands": "/home/microwonk/Dev/nett/builddir/compile_commands.json",
+  "files.associations": {
+    "*.ipp": "cpp"
+  }
 }

@@ -2,6 +2,9 @@
 
 A simple networking experiment in C++, using meson (trying it out) and vcpkg for dependencies
 
+NOTE: meson is barely usable compared to cmake, how do people use this
+TODO: use cmake instead
+
 # Requirements
 
 - vcpkg

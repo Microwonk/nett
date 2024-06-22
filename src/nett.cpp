@@ -1,14 +1,16 @@
 #include <iostream>
 
 #include <fmt/core.h>
+#include "TcpServer.h"
 
 #define PROJECT_NAME "nett"
 
-int main(int argc, char **argv) {
-    if(argc != 1) {
-        fmt::println("{} take no argument", argv[0]);
-        return 1;
-    }
+auto main() -> int {
     fmt::println("This is project {}", PROJECT_NAME);
-    return 0;
+
+    try {
+        run_tcp_server(8080);
+    } catch (std::exception& e) {
+        fmt::println("ERROR: {}", e.what());
+    }
 }

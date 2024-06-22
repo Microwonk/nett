@@ -1,3 +1,4 @@
 build/
+builddir/
 vcpkg_installed/
 meson-vcpkg.txt

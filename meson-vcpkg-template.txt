@@ -3,7 +3,7 @@ vcpkg_base_path = 'BASE_PATH'
 vcpkg_base_install_dir = 'BASE_INSTALL_DIR'
 vcpkg_target_triplet = 'x64-PLATFORM/'
 vcpkg_host_triplet = 'x64-PLATFORM/'
-vcpkg_installed_dir = vcpkg_base_install_dir + vcpkg_target_triplet
+vcpkg_installed_dir = vcpkg_base_install_dir + 'vcpkg_installed/' + vcpkg_target_triplet
 vcpkg_host_installed_dir = vcpkg_base_install_dir + vcpkg_host_triplet
 vcpkg_toolchain_file = vcpkg_base_path + 'scripts/toolchains/PLATFORM.cmake'
 
