@@ -1,17 +1,13 @@
 # NETT
 
-A simple networking experiment in C++, using meson (trying it out) and vcpkg for dependencies
-
-NOTE: meson is barely usable compared to cmake, how do people use this
-TODO: use cmake instead
+A simple networking experiment in C++, using CMake and vcpkg for dependencies
 
 # Requirements
 
 - vcpkg
-- meson
 - cmake
 - ninja
 
 # Building
 
-If all requirements are installed, you should be able to just run `make setup`, `make compile` and `make run`.
+If all requirements are installed, you should be able to just run `make setup` and `make run`.

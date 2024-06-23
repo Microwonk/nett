@@ -1,4 +1,5 @@
 build/
 builddir/
+cmake-build-debug/
 vcpkg_installed/
 meson-vcpkg.txt
