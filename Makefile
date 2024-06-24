@@ -1,13 +1,18 @@
-compile:
+compile: 
 	cmake --build build
 
-setup:
+setup: 
 	cmake --preset=default
 
-start:
-	./build/nett
+s: 
+	./build/server/server
 
-clean:
+c: 
+	./build/client/client
+
+clean: 
 	rm -rf build
 
-run: compile start
+runserver: compile s
+
+runclient: compile c
