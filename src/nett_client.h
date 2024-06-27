@@ -9,21 +9,25 @@ namespace nett {
     template <typename T>
     class client_if {
 
+    public:
         client_if() : m_socket(m_context) {}
 
         virtual ~client_if() {
             disconnect();
         }
 
-    public:
-        auto connect(const std::string& host, const uint16_t port)-> bool {
+        bool connect(const std::string& host, const uint16_t port) {
 
             try {
-                m_connection = std::make_unique<connection<T>>();
-
                 // resolve physical address
                 asio::ip::tcp::resolver resolver(m_context);
                 asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, std::to_string(port));
+
+                m_connection = std::make_unique<connection<T>>(
+                    connection<T>::owner::client,
+                    m_context,
+                    asio::ip::tcp::socket(m_context),
+                    m_q_messages_in);
 
                 m_connection->connect_to_server(endpoints);
 
@@ -37,7 +41,7 @@ namespace nett {
             return true;
         }
 
-        auto disconnect() -> void {
+        void disconnect() {
             if (is_connected()) {
                 m_connection->disconnect();
             }
@@ -51,11 +55,17 @@ namespace nett {
             m_connection.release();
         }
 
-        auto is_connected() -> bool {
+        bool is_connected() {
             if (m_connection) {
                 return m_connection->is_connected();
             }
             return false;
+        }
+
+        void send(const message<T>& msg) {
+            if (is_connected()) {
+                m_connection->send(msg);
+            }
         }
 
         auto incoming() -> ts_queue<owned_message<T>>& {

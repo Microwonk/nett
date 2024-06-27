@@ -24,7 +24,29 @@ protected:
     }
 
     void on_message(std::shared_ptr<nett::connection<ServerMessages>> client, nett::message<ServerMessages> &msg) override {
+        switch (msg.header.id)
+        {
+            case ServerMessages::ServerPing:
+            {
+                fmt::println("[{}]: Server Ping", client->get_id());
 
+                // Simply bounce message back to client
+                client->send(msg);
+            }
+            break;
+
+            case ServerMessages::MessageAll:
+            {
+                fmt::println("[{}]: Message All", client->get_id());
+
+                // Construct a new message and send it to all clients
+                nett::message<ServerMessages> msg;
+                msg.header.id = ServerMessages::ServerMessage;
+                msg << client->get_id();
+                broadcast_to_clients(msg, client);
+            }
+            break;
+        }
     }
 };
 

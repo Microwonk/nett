@@ -43,19 +43,19 @@ namespace nett {
             m_asio_acceptor.async_accept(
                 [this](std::error_code ec, asio::ip::tcp::socket socket) {
                     if (!ec) {
-                        fmt::println("[SERVER] New Connection: {}", socket.remote_endpoint().address().to_string());
+                        fmt::println("[SERVER] New Connection: {}:{}", socket.remote_endpoint().address().to_string(), socket.remote_endpoint().port());
 
-                        // if (std::shared_ptr<connection<T>> newConn =
-                        //         std::make_shared<connection<T>>(connection<T>::owner::server, m_asio_context, std::move(socket), m_q_messages_in); on_client_connect(newConn)) {
-                        //     m_deq_connections.push_back(std::move(newConn));
-                        //
-                        //     m_deq_connections.back()->connect_to_client(n_id_counter++);
-                        //
-                        //     fmt::println("[{}] Connection Approved", m_deq_connections.back()->get_id());
-                        //
-                        // } else {
-                        //     fmt::println("[SERVER] Connection Denied");
-                        // }
+                        if (std::shared_ptr<connection<T>> newConn =
+                                std::make_shared<connection<T>>(connection<T>::owner::server, m_asio_context, std::move(socket), m_q_messages_in); on_client_connect(newConn)) {
+                            m_deq_connections.push_back(std::move(newConn));
+
+                            m_deq_connections.back()->connect_to_client(n_id_counter++);
+
+                            fmt::println("[{}] Connection Approved", m_deq_connections.back()->get_id());
+
+                        } else {
+                            fmt::println("[SERVER] Connection Denied");
+                        }
 
                     } else {
                         fmt::println(stderr, "[-----] New Connection Error: {}", ec.message());
